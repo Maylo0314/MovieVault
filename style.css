@@ -1,0 +1,192 @@
+body{
+    background-color:#ecf0f3;
+    font-family: "Poppins", sans-serif;
+}
+
+:root{
+    --mdc-theme-primary: #1DA1F2;
+}
+
+.mdc-button:not(:disabled) {
+    color: white !important;    
+}
+
+.mdc-button-touch{
+    margin-top: 0px;
+}
+
+.modal-content .mdc-button{
+    background-color: #1DA1F2;
+    border-radius: 4px;
+    margin-top: 0;
+}
+
+.mdc-list{
+    padding: 0;
+}
+
+.mdc-drawer{
+    border: 0;
+}
+
+.material-icons {
+    color: #1DA1F2;
+}
+
+#response-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.movieclass img{
+    width: 150px;
+    height: 225px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: 0.5s ease;
+}
+
+.movieclass img:hover{
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+    transition: 0.5s ease;
+}
+
+.movieclass h3{
+    width: 150px;
+    font-size: 1em;
+}
+
+.movieclass{
+    padding: 15px;
+}
+
+input::placeholder {
+    color: gray;
+}
+
+.masthead h1{
+    margin-top: 80px;
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #1DA1F2;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+}
+
+input {
+    background: #ecf0f3;
+    padding: 10px;
+    padding-left: 20px;
+    height: 20px;
+    font-size: 14px;
+    border-radius: 50px;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+    outline: none;
+    border: none;
+}
+
+input:internal-autofill-selected {
+    background-color: none;
+}
+
+.masthead button {
+    color: white;
+    width: 200px;
+    margin-top: 20px;   
+    background: #1DA1F2;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 900;
+    box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+    transition: 0.5s;
+    outline: none;
+    border: none;
+}
+
+button:hover {
+    box-shadow: none;
+}
+
+.masthead{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+
+aside img{
+    width: 100%;
+    height: 250px;
+}
+
+.test{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.heart, .heartFull{
+    width: 25px;
+    height: 25px;
+}
+
+.movieclass button{
+    border: none;
+}
+
+.modalTitle{
+    font-size: 22px;
+    margin: 0;
+}
+
+.modalDate{
+    font-size: 14px;
+    margin: 0;
+}
+
+.modalP{
+    margin-top: 15px;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 5; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+  
+  /* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+}
+
+.modal-content img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+  /* The Close Button */
+.close {
+    font-size: 17px;
+    font-weight: bold;
+    width: 100%;
+    height: 35px;
+}
