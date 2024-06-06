@@ -47,6 +47,16 @@ body{
     transition: 0.5s ease;
 }
 
+.moviegameclass img{
+    width: 380px;
+    height: 100%;
+    border-radius: 10px;
+}   
+
+.moviegameclass{
+    padding: 15px;
+}
+
 .movieclass img:hover{
     -webkit-transform: scale(1.2);
     -ms-transform: scale(1.2);
@@ -85,6 +95,7 @@ input {
     font-size: 14px;
     border-radius: 50px;
     box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+    width: 80%;
     outline: none;
     border: none;
 }
@@ -130,6 +141,14 @@ aside img{
     align-items: center;
 }
 
+.reroll{
+    background-color: #1DA1F2;
+    float: right;
+    margin-right: 22px;
+    width: 50%;
+    height: 30px;   
+}
+
 .heart, .heartFull{
     width: 25px;
     height: 25px;
@@ -137,6 +156,7 @@ aside img{
 
 .movieclass button{
     border: none;
+    background-color: #ecf0f3;
 }
 
 .modalTitle{

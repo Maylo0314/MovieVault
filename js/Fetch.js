@@ -57,8 +57,42 @@
                         .catch(err => console.error(err));
                 });
             }
+        } else if (currentPage.endsWith('random.html')){
+            min = 1;
+            max = 40;
+            randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
+            fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&sort_by=popularity.desc&page=${randomInt}`, options)
+                .then(response => response.json())
+                .then(addGameMovie)
+                .catch(err => console.error(err));
+            console.log(randomInt);
         }
 
+        function addGameMovie(data) {
+            console.log(data);
+        
+            // Randomly select one movie from the data.results array
+            let randomMovie = data.results[Math.floor(Math.random() * data.results.length)];
+            console.log(randomMovie);
+        
+            let div = document.createElement('div');
+            div.classList.add('moviegameclass');
+        
+            let img = document.createElement('img');
+            img.src = `https://image.tmdb.org/t/p/w500${randomMovie.backdrop_path}`;
+            img.alt = randomMovie.title || randomMovie.name;
+            img.addEventListener('click', function() {
+                openModal(randomMovie);
+            });
+            div.appendChild(img);
+        
+            let date = document.createElement('p');
+            date.innerText = randomMovie.release_date;
+            div.appendChild(date);
+        
+            responseContainer.appendChild(div);
+        }
+        
         function addMovie(data) {
             console.log(data);
         
@@ -99,7 +133,7 @@
                 responseContainer.appendChild(div);
             });
         }
-        
+
         function toggleFavorite(movieId, button) {
             let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
             if (favorites.includes(movieId)) {
