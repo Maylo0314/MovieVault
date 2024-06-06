@@ -85,10 +85,28 @@
                 openModal(randomMovie);
             });
             div.appendChild(img);
+
+            let h3 = document.createElement('h3');
+            h3.innerText = randomMovie.title || element.name;
+            h3.classList.add('randomTitle')
+            div.appendChild(h3);
         
             let date = document.createElement('p');
             date.innerText = randomMovie.release_date;
+            date.classList.add('randomDate')
             div.appendChild(date);
+        
+            // Create the Re-Roll button
+            let rerollButton = document.createElement('a');
+            rerollButton.href = "random.html";
+            rerollButton.classList.add('moviegameclass', 'mdc-button', 'mdc-button--touch', 'reroll');
+        
+            let rerollLabel = document.createElement('span');
+            rerollLabel.classList.add('mdc-button__label');
+            rerollLabel.innerText = 'Re-Roll';
+            rerollButton.appendChild(rerollLabel);
+        
+            div.appendChild(rerollButton);
         
             responseContainer.appendChild(div);
         }

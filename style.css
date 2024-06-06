@@ -49,12 +49,14 @@ body{
 
 .moviegameclass img{
     width: 380px;
-    height: 100%;
+    height: 300px;
     border-radius: 10px;
 }   
 
 .moviegameclass{
     padding: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .movieclass img:hover{
@@ -145,7 +147,7 @@ aside img{
     background-color: #1DA1F2;
     float: right;
     margin-right: 22px;
-    width: 50%;
+    width: 100%;
     height: 30px;   
 }
 
@@ -171,6 +173,14 @@ aside img{
 
 .modalP{
     margin-top: 15px;
+}
+
+.randomTitle{
+    margin: 10px 0 0 0;
+}
+
+.randomDate{
+    margin: 5px 0 0 0;
 }
 
 .modal {
