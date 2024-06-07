@@ -49,7 +49,7 @@ body{
 
 .moviegameclass img{
     width: 380px;
-    height: 300px;
+    height: 230px;
     border-radius: 10px;
 }   
 
@@ -93,13 +93,14 @@ input {
     background: #ecf0f3;
     padding: 10px;
     padding-left: 20px;
-    height: 20px;
+    height: 30px;
     font-size: 14px;
     border-radius: 50px;
     box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
-    width: 80%;
+    width: 100%;
     outline: none;
     border: none;
+    font-size: 17px;
 }
 
 input:internal-autofill-selected {
@@ -108,7 +109,7 @@ input:internal-autofill-selected {
 
 .masthead button {
     color: white;
-    width: 200px;
+    width: 250px;
     margin-top: 20px;   
     background: #1DA1F2;
     height: 40px;
@@ -219,4 +220,11 @@ aside img{
     font-weight: bold;
     width: 100%;
     height: 35px;
+}
+
+
+@media screen and (min-width: 900px) {
+  .modal-content{
+    width: 30%;
+  }
 }
