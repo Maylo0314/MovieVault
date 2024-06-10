@@ -3,6 +3,7 @@
     const searchField = document.querySelector('#search-keyword');
     let searchedForText;
     const responseContainer = document.querySelector('#response-container');
+    const currentPage = window.location.pathname;
 
     window.addEventListener('load', function() {
 
@@ -17,11 +18,18 @@
                     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2UzNzNmMjI0MWZmZTZlNmVkOTNhMDJmNmQzNmE1ZSIsInN1YiI6IjY1ZDczYWI1NWNhNzA0MDE2MzBkYThiMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TduGChLj8cUaYlQ8h3YcbuwmO0Q8sO0yFEkQ-h7CzRU'
                 }
             };
-          
+            
+            if (currentPage.endsWith('index.html')) {
             fetch(`https://api.themoviedb.org/3/search/movie?query=${searchedForText}&include_adult=false&language=en-US&page=1`, options)
                 .then(response => response.json())
                 .then(addMovie)
                 .catch(err => console.error(err));  
+            } else if (currentPage.endsWith('person.html')) {
+                fetch(`https://api.themoviedb.org/3/search/person?query=${searchedForText}&include_adult=false&language=en-US&page=1`, options)
+                .then(response => response.json())
+                .then(addPerson)
+                .catch(err => console.error(err));
+            }
         });
 
         const options = {
@@ -31,8 +39,6 @@
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjY2UzNzNmMjI0MWZmZTZlNmVkOTNhMDJmNmQzNmE1ZSIsInN1YiI6IjY1ZDczYWI1NWNhNzA0MDE2MzBkYThiMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TduGChLj8cUaYlQ8h3YcbuwmO0Q8sO0yFEkQ-h7CzRU'
             }
         };
-
-        const currentPage = window.location.pathname;
 
         if (currentPage.endsWith('popular.html')) {
             fetch(`https://api.themoviedb.org/3/trending/movie/week?language=en-US`, options)
@@ -63,12 +69,12 @@
             randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
             fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&sort_by=popularity.desc&page=${randomInt}`, options)
                 .then(response => response.json())
-                .then(addGameMovie)
+                .then(addRandomMovie)
                 .catch(err => console.error(err));
             console.log(randomInt);
         }
 
-        function addGameMovie(data) {
+        function addRandomMovie(data) {
             console.log(data);
         
             // Randomly select one movie from the data.results array
@@ -129,6 +135,15 @@
                 let h3 = document.createElement('h3');
                 h3.innerText = element.title || element.name;
                 div.appendChild(h3);
+
+                let score = document.createElement('h2');
+                score.classList.add('scoreText')
+                let voteAverage = parseFloat(element.vote_average);
+                score.innerText = voteAverage.toFixed(1);
+                if(voteAverage == 0){
+                    score.innerText = "no score";
+                }
+                div.appendChild(score); 
         
                 let date = document.createElement('p');
                 date.innerText = element.release_date;
@@ -148,6 +163,29 @@
                 });
                 div.appendChild(favButton);
         
+                responseContainer.appendChild(div);
+            });
+        }
+
+        function addPerson(data) {
+            console.log(data);
+        
+            data.results.forEach(element => {
+                let div = document.createElement('div');
+                div.classList.add('movieclass');
+        
+                let img = document.createElement('img');
+                img.src = `https://image.tmdb.org/t/p/w500${element.profile_path}`;
+                img.alt = element.title || element.name;
+                img.addEventListener('click', function() {
+                    openModalPerson(element);
+                });
+                div.appendChild(img);
+        
+                let h3 = document.createElement('h3');
+                h3.innerText = element.title || element.name;
+                div.appendChild(h3);
+
                 responseContainer.appendChild(div);
             });
         }
@@ -178,6 +216,44 @@
         
             modal.style.display = "block";
             document.body.style.overflow = 'hidden';  // Disable scrolling
+        }
+
+        function openModalPerson(person) {
+            let modal = document.getElementById('myModal');
+            let modalImg = document.getElementById('modalImg');
+            let modalTitle = document.getElementById('modalTitle');
+            let knownForContainer = document.getElementById('knownForContainer');
+
+            knownForContainer.innerHTML = '';
+        
+            modalImg.src = `https://image.tmdb.org/t/p/w500${person.profile_path}`;
+            modalTitle.innerText = person.title || person.name;
+
+            if (person.known_for && Array.isArray(person.known_for)) {
+                person.known_for.forEach(movie => {
+                    addMovieToContainer(movie, knownForContainer);
+                });
+            }
+
+            modal.style.display = "block";
+            document.body.style.overflow = 'hidden';  // Disable scrolling
+        }
+
+        function addMovieToContainer(movie, container) {
+            let movieDiv = document.createElement('div');
+            movieDiv.className = 'movie';
+        
+            let movieImg = document.createElement('img');
+            movieImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+            movieImg.alt = movie.title || movie.name;
+        
+            let movieTitle = document.createElement('div');
+            movieTitle.className = 'movie-title';
+            movieTitle.innerText = movie.title || movie.name;
+        
+            movieDiv.appendChild(movieImg);
+            movieDiv.appendChild(movieTitle);
+            container.appendChild(movieDiv);
         }
 
         // Get the <span> element that closes the modal

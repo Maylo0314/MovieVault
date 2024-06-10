@@ -184,6 +184,13 @@ aside img{
     margin: 5px 0 0 0;
 }
 
+.scoreText{
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

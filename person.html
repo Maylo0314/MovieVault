@@ -11,6 +11,19 @@
     <link rel="shortcut icon" href="images/film.png" type="image/x-icon">
     <link rel="manifest" href="manifest.json">
 
+    <script>
+      window.addEventListener("load", () => {
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("service-worker.js");
+        }
+      });
+    </script>
+
+    <meta name="description" content="Movie Vault">
+    <meta name="msapplication-TileColor" content="#1DA1F2">
+    <meta name="theme-color" content="#1DA1F2">
+    
+        
     <!-- Material.io bestanden (CSS & Font/icons)-->
     <!-- Uitleg werking componenents: https://material.io/components?platform=web -->
     <!-- Demo van components:         https://material-components.github.io/material-components-web-catalog/#/ -->
@@ -30,7 +43,7 @@
         <div class="mdc-top-app-bar__row">
           <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <button id="navbarButton" class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Open navigation menu">menu</button>
-            <span id="navbarText" class="mdc-top-app-bar__title">Favorites</span>
+            <span id="navbarText" class="mdc-top-app-bar__title">Person</span>
           </section>
           <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
             <!-- <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Search">search</button>
@@ -43,7 +56,7 @@
         <div class="mdc-drawer__content">
           <nav class="mdc-list">
             <img src="images/TheMovieFault.jpg" alt="">
-            <a class="mdc-list-item " href="index.html" aria-current="page" tabindex="0">
+            <a class="mdc-list-item" href="index.html" aria-current="page" tabindex="0">
               <span class="mdc-list-item__ripple"></span>
               <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
               <span class="mdc-list-item__text">Home</span>
@@ -61,7 +74,7 @@
               <span class="mdc-list-item__text">Upcoming</span>
             </a>
             <br>
-            <a class="mdc-list-item mdc-list-item--activated" href="favorites.html">
+            <a class="mdc-list-item" href="favorites.html">
                 <span class="mdc-list-item__ripple"></span>
                 <i class="material-icons mdc-list-item__graphic" aria-hidden="true">favorite</i>
                 <span class="mdc-list-item__text">Favorites</span>
@@ -73,7 +86,7 @@
               <span class="mdc-list-item__text">Random</span>
             </a>
             <br>
-            <a class="mdc-list-item" href="person.html">
+            <a class="mdc-list-item mdc-list-item--activated" href="person.html">
               <span class="mdc-list-item__ripple"></span>
               <i class="material-icons mdc-list-item__graphic" aria-hidden="true">person</i>
               <span class="mdc-list-item__text">Person</span>
@@ -85,10 +98,22 @@
     <div class="mdc-drawer-scrim"></div>
 
     <main class="masthead">
-      <h1>Movie Vault</h1>
+        <h1>Movie Vault</h1>
         <div class="site-container">
             <form id="search-form" action="#">
-                <label for="search-keyword" class="visuallyhidden">Your favorite movies!</label>
+                <label for="search-keyword" class="visuallyhidden">Search your favorite movie stars!</label>
+                <br>
+                <br>
+                <div class="test">
+                    <input id="search-keyword" type="text" name="search-keyword" placeholder="Arnold Schwarzenegger" required>
+                    <div class="mdc-touch-target-wrapper">
+                        <button id="submit-btn" type="submit" value="Submit" class="mdc-button mdc-button--touch" required>
+                          <span class="mdc-button__ripple"></span>
+                          <span class="mdc-button__touch"></span>
+                          <span class="mdc-button__label">Search</span>
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </main>
@@ -96,7 +121,7 @@
     <div class="site-container">
         <div id="response-container"></div>
     </div>
-    
+
     <div id="myModal" class="modal">
       <div class="modal-content">
         <img id="modalImg" src="" alt="Movie Poster">
@@ -105,12 +130,13 @@
           <span class="mdc-button__label">Back</span>
         </button>
         <h3 class="modalTitle" id="modalTitle"></h3>
-        <p class="modalDate" id="modalDate"></p>
-        <p class="modalP" id="modalOverview"></p>
+        <h3>Known For:</h3>
+        <div id="knownForContainer"></div>
       </div>
     </div>
 
     <script src="js/init.js"></script>
     <script src="js/Fetch.js"></script>
+    
 </body>
 </html>
