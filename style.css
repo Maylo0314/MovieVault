@@ -67,12 +67,22 @@ body{
 }
 
 .movieclass h3{
-    width: 150px;
-    font-size: 1em;
+    max-width: 150px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.movieclass p{
+    font-size: 18px;
+    margin-top: 10px;
 }
 
 .movieclass{
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 input::placeholder {
@@ -153,13 +163,15 @@ aside img{
 }
 
 .heart, .heartFull{
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 44px;
+    margin-left: 10px;
 }
 
 .movieclass button{
     border: none;
     background-color: #ecf0f3;
+    margin: 0px;
 }
 
 .modalTitle{
@@ -185,11 +197,20 @@ aside img{
 }
 
 .scoreText{
-    font-size: 20px;
-    margin-bottom: 0px;
+    font-size: 18px;
+    margin: 0px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #1da1f2;
+    padding: 8px;
+    color: white;
+    text-align: center;
 }
 
-
+.order{
+    display: flex;
+    align-items: center;
+}
 
 .modal {
     display: none; /* Hidden by default */

@@ -136,18 +136,19 @@
                 h3.innerText = element.title || element.name;
                 div.appendChild(h3);
 
+                let order = document.createElement('div');
+                order.classList.add('order');
+
                 let score = document.createElement('h2');
                 score.classList.add('scoreText')
+            
+
                 let voteAverage = parseFloat(element.vote_average);
                 score.innerText = voteAverage.toFixed(1);
                 if(voteAverage == 0){
                     score.innerText = "no score";
                 }
-                div.appendChild(score); 
-        
-                let date = document.createElement('p');
-                date.innerText = element.release_date;
-                div.appendChild(date);
+                order.appendChild(score); 
 
                 const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
                 const isFavorite = favorites.includes(element.id.toString());
@@ -161,8 +162,14 @@
                     const movieId = element.id.toString();
                     toggleFavorite(movieId, favButton);
                 });
-                div.appendChild(favButton);
+                order.appendChild(favButton);
+
+                div.appendChild(order);
         
+                let date = document.createElement('p');
+                date.innerText = element.release_date;
+                div.appendChild(date);
+
                 responseContainer.appendChild(div);
             });
         }
