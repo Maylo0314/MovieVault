@@ -70,7 +70,7 @@ body{
     max-width: 150px;
     margin-bottom: 10px;
     text-align: center;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .movieclass p{
@@ -110,7 +110,7 @@ input {
     width: 100%;
     outline: none;
     border: none;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 input:internal-autofill-selected {
@@ -199,7 +199,7 @@ aside img{
 .scoreText{
     font-size: 18px;
     margin: 0px;
-    width: 100%;
+    width: 26px;
     border-radius: 10px;
     background-color: #1da1f2;
     padding: 8px;

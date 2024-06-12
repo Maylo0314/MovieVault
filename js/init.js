@@ -30,3 +30,13 @@ function removeClass() {
     });
 }
 
+function copyToClipboard(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    alert('Link copied to clipboard!');
+}
+
+function shareApp() {
+    const url = `https://net24melfrink.gc-webhosting.nl/MovieVault/`;
+    copyToClipboard(url);
+}

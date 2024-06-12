@@ -146,7 +146,7 @@
                 let voteAverage = parseFloat(element.vote_average);
                 score.innerText = voteAverage.toFixed(1);
                 if(voteAverage == 0){
-                    score.innerText = "no score";
+                    score.innerText = "?";
                 }
                 order.appendChild(score); 
 
@@ -254,12 +254,7 @@
             movieImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
             movieImg.alt = movie.title || movie.name;
         
-            let movieTitle = document.createElement('div');
-            movieTitle.className = 'movie-title';
-            movieTitle.innerText = movie.title || movie.name;
-        
             movieDiv.appendChild(movieImg);
-            movieDiv.appendChild(movieTitle);
             container.appendChild(movieDiv);
         }
 
