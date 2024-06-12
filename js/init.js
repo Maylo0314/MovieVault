@@ -30,13 +30,13 @@ function removeClass() {
     });
 }
 
-function copyToClipboard(text) {
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.body.removeChild(textarea);
-    alert('Link copied to clipboard!');
+async function copyToClipboard(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+        alert('Link copied to clipboard!');
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+    }
 }
 
 function shareApp() {
