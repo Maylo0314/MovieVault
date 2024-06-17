@@ -19,11 +19,13 @@
                 }
             };
             
+            // fetch movies with search on index.html
             if (currentPage.endsWith('index.html')) {
             fetch(`https://api.themoviedb.org/3/search/movie?query=${searchedForText}&include_adult=false&language=en-US&page=1`, options)
                 .then(response => response.json())
                 .then(addMovie)
                 .catch(err => console.error(err));  
+               // fetch persons witch search on person.html 
             } else if (currentPage.endsWith('person.html')) {
                 fetch(`https://api.themoviedb.org/3/search/person?query=${searchedForText}&include_adult=false&language=en-US&page=1`, options)
                 .then(response => response.json())
@@ -40,11 +42,13 @@
             }
         };
 
+        // fetch the popular movies
         if (currentPage.endsWith('popular.html')) {
             fetch(`https://api.themoviedb.org/3/trending/movie/week?language=en-US`, options)
                 .then(response => response.json())
                 .then(addMovie)
                 .catch(err => console.error(err));
+                // fetch the upcoming movies
         } else if (currentPage.endsWith('upcoming.html')) {
             fetch(`https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`, options)
                 .then(response => response.json())
@@ -57,6 +61,7 @@
                 responseContainer.innerHTML = '<p>No favorite movies added yet.</p>';
             } else {
                 favorites.forEach(movieId => {
+                     //fetch your favorite movies
                     fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, options)
                         .then(response => response.json())
                         .then(movie => addMovie({ results: [movie] }))
@@ -67,6 +72,7 @@
             min = 1;
             max = 40;
             randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
+            //fetch the random movie
             fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&sort_by=popularity.desc&page=${randomInt}`, options)
                 .then(response => response.json())
                 .then(addRandomMovie)
@@ -74,6 +80,7 @@
             console.log(randomInt);
         }
 
+        // add randommovie
         function addRandomMovie(data) {
             console.log(data);
         
@@ -117,6 +124,7 @@
             responseContainer.appendChild(div);
         }
         
+        // add movie
         function addMovie(data) {
             console.log(data);
         
@@ -174,6 +182,7 @@
             });
         }
 
+        // add person
         function addPerson(data) {
             console.log(data);
         
@@ -197,6 +206,7 @@
             });
         }
 
+        // toggles favorites
         function toggleFavorite(movieId, button) {
             let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
             if (favorites.includes(movieId)) {
@@ -209,6 +219,7 @@
             localStorage.setItem('favorites', JSON.stringify(favorites));
         }
 
+        // modal for the movie
         function openModal(movie) {
             let modal = document.getElementById('myModal');
             let modalImg = document.getElementById('modalImg');
@@ -225,6 +236,7 @@
             document.body.style.overflow = 'hidden';  // Disable scrolling
         }
 
+        // modal for the person
         function openModalPerson(person) {
             let modal = document.getElementById('myModal');
             let modalImg = document.getElementById('modalImg');
@@ -246,6 +258,7 @@
             document.body.style.overflow = 'hidden';  // Disable scrolling
         }
 
+        // Known for movies by moviestar
         function addMovieToContainer(movie, container) {
             let movieDiv = document.createElement('div');
             movieDiv.className = 'movie';
