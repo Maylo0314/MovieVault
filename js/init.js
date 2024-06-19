@@ -30,30 +30,11 @@ function removeClass() {
     });
 }
 
-async function copyToClipboard(text) {
-    if (navigator.clipboard) {
-        try {
-            await navigator.clipboard.writeText(text);
-            alert('Link copied to clipboard!');
-        } catch (err) {
-            console.error('Failed to copy: ', err);
-        }
-    } else {
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        document.body.appendChild(textarea);
-        textarea.select();
-        try {
-            document.execCommand('copy');
-            alert('Link copied to clipboard!');
-        } catch (err) {
-            console.error('Failed to copy: ', err);
-        }
-        document.body.removeChild(textarea);
-    }
-}
-
 function shareApp() {
-    const url = `https://net24melfrink.gc-webhosting.nl/MovieVault/`;
-    copyToClipboard(url);
+    
+    navigator.share({
+        title: "MovieVault",
+        text: "",
+        url: window.navigator.url,
+    });
 }
