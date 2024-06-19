@@ -31,10 +31,10 @@ function removeClass() {
 }
 
 function shareApp() {
-    
+
     navigator.share({
         title: "MovieVault",
         text: "",
-        url: window.navigator.url,
+        url: window.location.href,
     });
 }
