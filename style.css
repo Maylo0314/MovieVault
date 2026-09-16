@@ -232,7 +232,7 @@ aside img{
     margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 75%; /* Could be more or less, depending on screen size */
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -240,7 +240,7 @@ aside img{
 }
 
 .modal-content img{
-    width: 75%;
+    width: 60%;
     height: 100%;
     border-radius: 10px;
     margin-bottom: 15px;
